@@ -1,39 +1,19 @@
 <?php
-    $str = file_get_contents("users.txt");
-    $arr = explode("\r\n", $str);
+include 'utils.php';
+$users = getusers();
 ?>
-
-<?php 
-
-    $content = '';
-
-    foreach($arr as $item){
-        $user = explode(':', $item);
-
-        $content = $content . "<tr>    
-            <td>{$user[0]}</td>
-            <td>{$user[1]}</td>
-            <td>{$user[2]}</td>
-        </tr>";
-    }
-?>
-
 <table>
-    <tr>    
+    <th>Список пользователей</th>
+    <tr>
         <th>Login</th>
         <th>Password</th>
-        <th>Email</th>
+        <th>E-mail</th>
     </tr>
-
-    <?=$content?>
-
-    <?php foreach($arr as $item) {
-        $user = explode(':', $item);
-    ?>
-        <tr>    
-            <td><?=$user[0]?></td>
-            <td><?=$user[1]?></td>
-            <td><?=$user[2]?></td>          
-        </tr>
+    <?php foreach ($users as $user) { ?>
+    <tr>
+        <td><?=$user[0] ?></td>
+        <td><?=$user[1] ?></td>
+        <td><?=$user[2] ?></td>
+    </tr>
     <?php } ?>
 </table>
